@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { contact } from "@/lib/team";
 
@@ -181,19 +183,7 @@ export default function Footer() {
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        style={{
-                          color: "var(--text-on-dark-secondary)",
-                          fontSize: "var(--text-sm)",
-                          transition: "color var(--transition-fast)",
-                        }}
-                        onMouseEnter={(e) =>
-                          (e.currentTarget.style.color =
-                            "var(--text-on-dark)")
-                        }
-                        onMouseLeave={(e) =>
-                          (e.currentTarget.style.color =
-                            "var(--text-on-dark-secondary)")
-                        }
+                        className="footer-nav-link"
                       >
                         {link.label}
                       </Link>
@@ -233,19 +223,7 @@ export default function Footer() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "var(--text-xs)",
-                    color: "var(--text-on-dark-secondary)",
-                    transition: "color var(--transition-fast)",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = "var(--text-on-dark)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color =
-                      "var(--text-on-dark-secondary)")
-                  }
+                  className="footer-legal-link"
                 >
                   {item.label}
                 </Link>
@@ -256,18 +234,25 @@ export default function Footer() {
       </div>
 
       <style>{`
+        .footer-nav-link {
+          color: var(--text-on-dark-secondary);
+          font-size: var(--text-sm);
+          transition: color var(--transition-fast);
+        }
+        .footer-nav-link:hover { color: var(--text-on-dark); }
+        .footer-legal-link {
+          font-family: var(--font-mono);
+          font-size: var(--text-xs);
+          color: var(--text-on-dark-secondary);
+          transition: color var(--transition-fast);
+        }
+        .footer-legal-link:hover { color: var(--text-on-dark); }
         @media (max-width: 767px) {
-          .footer-links-grid {
-            grid-template-columns: 1fr 1fr !important;
-          }
-          .footer-cta-grid {
-            grid-template-columns: 1fr !important;
-          }
+          .footer-links-grid { grid-template-columns: 1fr 1fr !important; }
+          .footer-cta-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 480px) {
-          .footer-links-grid {
-            grid-template-columns: 1fr !important;
-          }
+          .footer-links-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </footer>
