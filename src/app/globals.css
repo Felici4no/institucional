@@ -511,3 +511,14 @@ select.form-input {
   white-space: nowrap;
   border-width: 0;
 }
+
+/* ─────────────────────────────────────────
+   PADDINGS DE SEGURANÇA PARA MOBILE BOTTOM NAV
+───────────────────────────────────────── */
+@media (max-width: 767px) {
+  .app-content {
+    /* Altura barra (~66px/4.125rem) + Offset (~12px/0.75rem) + Segurança (~20px/1.25rem) */
+    padding-bottom: calc(6.125rem + env(safe-area-inset-bottom)) !important;
+  }
+}
+

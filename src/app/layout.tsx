@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, DM_Serif_Display, JetBrains_Mono } from "next/font/google";
+import MobileBottomNav from "@/components/layout/MobileBottomNav";
 import "./globals.css";
 
 const inter = Inter({
@@ -83,8 +84,12 @@ export default function RootLayout({
       lang="pt-BR"
       className={`h-full ${inter.variable} ${dmSerif.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+      <body className="min-h-full flex flex-col antialiased">
+        <div className="app-content flex-grow flex flex-col">{children}</div>
+        <MobileBottomNav />
+      </body>
     </html>
   );
 }
+
 
