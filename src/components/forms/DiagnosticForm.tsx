@@ -25,7 +25,6 @@ type FormData = z.infer<typeof schema>;
 export default function DiagnosticForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [formTracked, setFormTracked] = useState(false);
 
   const {
     register,

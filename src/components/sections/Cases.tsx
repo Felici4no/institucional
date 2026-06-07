@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { getFeaturedCases } from "@/lib/cases";
+import { events } from "@/lib/analytics";
 
 export default function Cases() {
   const cases = getFeaturedCases();
@@ -77,13 +80,7 @@ export default function Cases() {
               key={caseItem.slug}
               href={`/projetos/${caseItem.slug}`}
               style={{ display: "block", textDecoration: "none" }}
-              onClick={() => {
-                if (typeof window !== "undefined" && (window as any).gtag) {
-                  import("@/lib/analytics").then(({ events }) =>
-                    events.caseView(caseItem.slug)
-                  );
-                }
-              }}
+              onClick={() => events.caseView(caseItem.slug)}
             >
               <article
                 className="case-card"
