@@ -192,7 +192,7 @@ export default function Header() {
           style={{ display: "flex", flexDirection: "column", gap: "0" }}
           aria-label="Menu mobile"
         >
-          {navLinks.map((link, i) => (
+          {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}

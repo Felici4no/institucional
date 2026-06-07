@@ -61,7 +61,7 @@ export default function Services() {
             gap: "0",
           }}
         >
-          {services.map((service, index) => (
+          {services.map((service) => (
             <div
               key={service.id}
               id={service.anchor}

@@ -75,7 +75,7 @@ export default function Cases() {
 
         {/* Lista de casos */}
         <div>
-          {cases.map((caseItem, index) => (
+          {cases.map((caseItem) => (
             <Link
               key={caseItem.slug}
               href={`/projetos/${caseItem.slug}`}

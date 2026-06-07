@@ -51,7 +51,7 @@ export default function Content() {
 
         {/* Posts */}
         <div>
-          {posts.map((post, index) => (
+          {posts.map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}

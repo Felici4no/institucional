@@ -104,7 +104,7 @@ export default function Continuity() {
           }}
           className="continuity-grid"
         >
-          {plans.map((plan, index) => (
+          {plans.map((plan) => (
             <div
               key={plan.name}
               style={{
