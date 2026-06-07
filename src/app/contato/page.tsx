@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import DiagnosticForm from "@/components/forms/DiagnosticForm";
-import { contact } from "@/lib/team";
+import { company, isPlaceholder } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Solicitar Diagnóstico",
@@ -145,53 +145,59 @@ export default function ContactPage() {
                 </div>
 
                 {/* Contato direto */}
-                <div style={{ marginTop: "3rem" }}>
-                  <p className="label" style={{ marginBottom: "1rem" }}>
-                    Prefere contato direto?
-                  </p>
-                  <div
-                    style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}
-                  >
-                    <a
-                      href={`mailto:${contact.email}`}
-                      style={{
-                        fontSize: "var(--text-sm)",
-                        color: "var(--text-secondary)",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                      }}
-                    >
-                      <span className="label">E-mail</span>
-                      {contact.email}
-                    </a>
-                    <a
-                      href={contact.whatsappLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        fontSize: "var(--text-sm)",
-                        color: "var(--text-secondary)",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                      }}
-                    >
-                      <span className="label">WhatsApp</span>
-                      {contact.whatsapp}
-                    </a>
-                    <p
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "var(--text-xs)",
-                        color: "var(--text-tertiary)",
-                        marginTop: "0.25rem",
-                      }}
-                    >
-                      {contact.location} · {contact.responseTime}
+                {((company.email && !isPlaceholder(company.email)) || (company.whatsapp && !isPlaceholder(company.whatsapp))) && (
+                  <div style={{ marginTop: "3rem" }}>
+                    <p className="label" style={{ marginBottom: "1rem" }}>
+                      Prefere contato direto?
                     </p>
+                    <div
+                      style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}
+                    >
+                      {company.email && !isPlaceholder(company.email) && (
+                        <a
+                          href={`mailto:${company.email}`}
+                          style={{
+                            fontSize: "var(--text-sm)",
+                            color: "var(--text-secondary)",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.5rem",
+                          }}
+                        >
+                          <span className="label">E-mail</span>
+                          {company.email}
+                        </a>
+                      )}
+                      {company.whatsapp && !isPlaceholder(company.whatsapp) && (
+                        <a
+                          href={company.whatsappLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            fontSize: "var(--text-sm)",
+                            color: "var(--text-secondary)",
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.5rem",
+                          }}
+                        >
+                          <span className="label">WhatsApp</span>
+                          {company.whatsapp}
+                        </a>
+                      )}
+                      <p
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "var(--text-xs)",
+                          color: "var(--text-tertiary)",
+                          marginTop: "0.25rem",
+                        }}
+                      >
+                        {company.location} · {company.responseTime}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               {/* Direita — Formulário */}

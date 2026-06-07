@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
+import { company } from "@/lib/company";
+
 export const metadata: Metadata = {
   title: "Termos de Uso",
   description: "Termos e condições de uso dos serviços da empresa.",
@@ -34,21 +36,6 @@ export default function TermsPage() {
                 Termos de Uso
               </h1>
 
-              <div
-                style={{
-                  padding: "1rem",
-                  border: "1px solid var(--border)",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "var(--text-xs)",
-                  color: "var(--text-secondary)",
-                  marginBottom: "2rem",
-                }}
-              >
-                [PLACEHOLDER: Este documento deve ser redigido com auxílio
-                jurídico especializado. Substitua este bloco pelo texto
-                definitivo antes de publicar o site.]
-              </div>
-
               <p
                 style={{
                   fontSize: "var(--text-base)",
@@ -56,10 +43,9 @@ export default function TermsPage() {
                   lineHeight: 1.75,
                 }}
               >
-                Os termos de uso da [NOME DA EMPRESA] regularão a relação entre
-                a empresa e seus clientes, parceiros e visitantes. O documento
-                completo será disponibilizado antes da entrada em operação
-                comercial do site.
+                Os termos de uso de {company.name} regularão a relação entre
+                a iniciativa e seus clientes, parceiros e visitantes. O documento
+                completo será fornecido diretamente aos contratantes no início dos serviços.
               </p>
             </div>
           </div>

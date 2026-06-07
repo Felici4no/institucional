@@ -66,130 +66,436 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-        {/* Lista de casos */}
-        <section style={{ padding: "3rem 0 6rem" }}>
+        {/* Seções de Projetos por Nível */}
+        {/* Cases Principais */}
+        <section style={{ padding: "4rem 0", borderBottom: "1px solid var(--border)" }}>
           <div className="container">
-            {cases.map((caseItem) => (
-              <Link
-                key={caseItem.slug}
-                href={`/projetos/${caseItem.slug}`}
-                style={{ display: "block" }}
-              >
-                <article
-                  className="case-card"
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "80px 1fr 280px auto",
-                    gap: "2.5rem",
-                    alignItems: "start",
-                    cursor: "pointer",
-                  }}
-                >
-                  {/* Número */}
-                  <div>
-                    <span
+            <h2
+              style={{
+                fontSize: "var(--text-2xl)",
+                fontWeight: 600,
+                letterSpacing: "-0.02em",
+                marginBottom: "2rem",
+                color: "var(--text-primary)",
+              }}
+            >
+              Cases principais
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              {cases
+                .filter((c) => c.group === "commercial")
+                .map((caseItem) => (
+                  <Link
+                    key={caseItem.slug}
+                    href={`/projetos/${caseItem.slug}`}
+                    style={{ display: "block", textDecoration: "none" }}
+                  >
+                    <article
+                      className="case-card"
                       style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "var(--text-xs)",
-                        color: "var(--text-tertiary)",
+                        display: "grid",
+                        gridTemplateColumns: "80px 1fr 280px auto",
+                        gap: "2.5rem",
+                        alignItems: "start",
+                        cursor: "pointer",
+                        padding: "2.5rem 0",
+                        borderTop: "1px solid var(--border)",
                       }}
                     >
-                      CASO {caseItem.number}
-                    </span>
-                  </div>
-
-                  {/* Principal */}
-                  <div>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.75rem",
-                        marginBottom: "0.875rem",
-                        flexWrap: "wrap",
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontFamily: "var(--font-mono)",
-                          fontSize: "var(--text-xs)",
-                          color: "var(--text-secondary)",
-                          border: "1px solid var(--border)",
-                          padding: "0.2rem 0.5rem",
-                        }}
-                      >
-                        {caseItem.category}
-                      </span>
-                      <span
-                        className={`badge badge-${caseItem.statusType}`}
-                      >
+                      {/* Número */}
+                      <div>
                         <span
                           style={{
-                            display: "inline-block",
-                            width: "5px",
-                            height: "5px",
-                            borderRadius: "50%",
-                            backgroundColor: "currentColor",
+                            fontFamily: "var(--font-mono)",
+                            fontSize: "var(--text-xs)",
+                            color: "var(--text-tertiary)",
                           }}
-                        />
-                        {caseItem.status}
+                        >
+                          CASO {caseItem.number}
+                        </span>
+                      </div>
+
+                      {/* Principal */}
+                      <div>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.75rem",
+                            marginBottom: "0.875rem",
+                            flexWrap: "wrap",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontFamily: "var(--font-mono)",
+                              fontSize: "var(--text-xs)",
+                              color: "var(--text-secondary)",
+                              border: "1px solid var(--border)",
+                              padding: "0.2rem 0.5rem",
+                            }}
+                          >
+                            {caseItem.category}
+                          </span>
+                          <span
+                            className={`badge badge-${caseItem.statusType}`}
+                          >
+                            <span
+                              style={{
+                                display: "inline-block",
+                                width: "5px",
+                                height: "5px",
+                                borderRadius: "50%",
+                                backgroundColor: "currentColor",
+                              }}
+                            />
+                            {caseItem.status}
+                          </span>
+                        </div>
+                        <h3
+                          style={{
+                            fontSize: "var(--text-xl)",
+                            fontWeight: 600,
+                            letterSpacing: "-0.02em",
+                            marginBottom: "0.5rem",
+                            lineHeight: 1.3,
+                          }}
+                        >
+                          {caseItem.headline}
+                        </h3>
+                        <p
+                          style={{
+                            fontSize: "var(--text-sm)",
+                            color: "var(--text-secondary)",
+                            lineHeight: 1.7,
+                          }}
+                        >
+                          {caseItem.problem}
+                        </p>
+                      </div>
+
+                      {/* Resultado */}
+                      <div>
+                        <p
+                          className="label"
+                          style={{ marginBottom: "0.5rem" }}
+                        >
+                          Resultado
+                        </p>
+                        <p
+                          style={{
+                            fontSize: "var(--text-sm)",
+                            color: "var(--text-secondary)",
+                            lineHeight: 1.7,
+                          }}
+                        >
+                          {caseItem.result}
+                        </p>
+                      </div>
+
+                      {/* Arrow */}
+                      <span
+                        style={{
+                          color: "var(--text-tertiary)",
+                          fontSize: "var(--text-xl)",
+                          paddingTop: "0.25rem",
+                        }}
+                      >
+                        →
                       </span>
-                    </div>
-                    <h2
-                      style={{
-                        fontSize: "var(--text-xl)",
-                        fontWeight: 600,
-                        letterSpacing: "-0.02em",
-                        marginBottom: "0.5rem",
-                        lineHeight: 1.3,
-                      }}
-                    >
-                      {caseItem.headline}
-                    </h2>
-                    <p
-                      style={{
-                        fontSize: "var(--text-sm)",
-                        color: "var(--text-secondary)",
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      {caseItem.problem}
-                    </p>
-                  </div>
+                    </article>
+                  </Link>
+                ))}
+              <div style={{ borderTop: "1px solid var(--border)" }} />
+            </div>
+          </div>
+        </section>
 
-                  {/* Resultado */}
-                  <div>
-                    <p
-                      className="label"
-                      style={{ marginBottom: "0.5rem" }}
-                    >
-                      Resultado
-                    </p>
-                    <p
-                      style={{
-                        fontSize: "var(--text-sm)",
-                        color: "var(--text-secondary)",
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      {caseItem.result}
-                    </p>
-                  </div>
-
-                  {/* Arrow */}
-                  <span
-                    style={{
-                      color: "var(--text-tertiary)",
-                      fontSize: "var(--text-xl)",
-                      paddingTop: "0.25rem",
-                    }}
+        {/* Inovação e Impacto */}
+        <section style={{ padding: "4rem 0", borderBottom: "1px solid var(--border)" }}>
+          <div className="container">
+            <h2
+              style={{
+                fontSize: "var(--text-2xl)",
+                fontWeight: 600,
+                letterSpacing: "-0.02em",
+                marginBottom: "2rem",
+                color: "var(--text-primary)",
+              }}
+            >
+              Inovação e impacto
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              {cases
+                .filter((c) => c.group === "innovation")
+                .map((caseItem) => (
+                  <Link
+                    key={caseItem.slug}
+                    href={`/projetos/${caseItem.slug}`}
+                    style={{ display: "block", textDecoration: "none" }}
                   >
-                    →
-                  </span>
-                </article>
-              </Link>
-            ))}
-            <div style={{ borderTop: "1px solid var(--border)" }} />
+                    <article
+                      className="case-card"
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "80px 1fr 280px auto",
+                        gap: "2.5rem",
+                        alignItems: "start",
+                        cursor: "pointer",
+                        padding: "2.5rem 0",
+                        borderTop: "1px solid var(--border)",
+                      }}
+                    >
+                      {/* Número */}
+                      <div>
+                        <span
+                          style={{
+                            fontFamily: "var(--font-mono)",
+                            fontSize: "var(--text-xs)",
+                            color: "var(--text-tertiary)",
+                          }}
+                        >
+                          CASO {caseItem.number}
+                        </span>
+                      </div>
+
+                      {/* Principal */}
+                      <div>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.75rem",
+                            marginBottom: "0.875rem",
+                            flexWrap: "wrap",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontFamily: "var(--font-mono)",
+                              fontSize: "var(--text-xs)",
+                              color: "var(--text-secondary)",
+                              border: "1px solid var(--border)",
+                              padding: "0.2rem 0.5rem",
+                            }}
+                          >
+                            {caseItem.category}
+                          </span>
+                          <span
+                            className={`badge badge-${caseItem.statusType}`}
+                          >
+                            <span
+                              style={{
+                                display: "inline-block",
+                                width: "5px",
+                                height: "5px",
+                                borderRadius: "50%",
+                                backgroundColor: "currentColor",
+                              }}
+                            />
+                            {caseItem.status}
+                          </span>
+                        </div>
+                        <h3
+                          style={{
+                            fontSize: "var(--text-xl)",
+                            fontWeight: 600,
+                            letterSpacing: "-0.02em",
+                            marginBottom: "0.5rem",
+                            lineHeight: 1.3,
+                          }}
+                        >
+                          {caseItem.headline}
+                        </h3>
+                        <p
+                          style={{
+                            fontSize: "var(--text-sm)",
+                            color: "var(--text-secondary)",
+                            lineHeight: 1.7,
+                          }}
+                        >
+                          {caseItem.problem}
+                        </p>
+                      </div>
+
+                      {/* Resultado */}
+                      <div>
+                        <p
+                          className="label"
+                          style={{ marginBottom: "0.5rem" }}
+                        >
+                          Resultado
+                        </p>
+                        <p
+                          style={{
+                            fontSize: "var(--text-sm)",
+                            color: "var(--text-secondary)",
+                            lineHeight: 1.7,
+                          }}
+                        >
+                          {caseItem.result}
+                        </p>
+                      </div>
+
+                      {/* Arrow */}
+                      <span
+                        style={{
+                          color: "var(--text-tertiary)",
+                          fontSize: "var(--text-xl)",
+                          paddingTop: "0.25rem",
+                        }}
+                      >
+                        →
+                      </span>
+                    </article>
+                  </Link>
+                ))}
+              <div style={{ borderTop: "1px solid var(--border)" }} />
+            </div>
+          </div>
+        </section>
+
+        {/* Laboratório */}
+        <section style={{ padding: "4rem 0 6rem" }}>
+          <div className="container">
+            <h2
+              style={{
+                fontSize: "var(--text-2xl)",
+                fontWeight: 600,
+                letterSpacing: "-0.02em",
+                marginBottom: "2rem",
+                color: "var(--text-primary)",
+              }}
+            >
+              Laboratório
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              {cases
+                .filter((c) => c.group === "laboratory")
+                .map((caseItem) => (
+                  <Link
+                    key={caseItem.slug}
+                    href={`/projetos/${caseItem.slug}`}
+                    style={{ display: "block", textDecoration: "none" }}
+                  >
+                    <article
+                      className="case-card"
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "80px 1fr 280px auto",
+                        gap: "2.5rem",
+                        alignItems: "start",
+                        cursor: "pointer",
+                        padding: "2.5rem 0",
+                        borderTop: "1px solid var(--border)",
+                      }}
+                    >
+                      {/* Número */}
+                      <div>
+                        <span
+                          style={{
+                            fontFamily: "var(--font-mono)",
+                            fontSize: "var(--text-xs)",
+                            color: "var(--text-tertiary)",
+                          }}
+                        >
+                          CASO {caseItem.number}
+                        </span>
+                      </div>
+
+                      {/* Principal */}
+                      <div>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.75rem",
+                            marginBottom: "0.875rem",
+                            flexWrap: "wrap",
+                          }}
+                        >
+                          <span
+                            style={{
+                              fontFamily: "var(--font-mono)",
+                              fontSize: "var(--text-xs)",
+                              color: "var(--text-secondary)",
+                              border: "1px solid var(--border)",
+                              padding: "0.2rem 0.5rem",
+                            }}
+                          >
+                            {caseItem.category}
+                          </span>
+                          <span
+                            className={`badge badge-${caseItem.statusType}`}
+                          >
+                            <span
+                              style={{
+                                display: "inline-block",
+                                width: "5px",
+                                height: "5px",
+                                borderRadius: "50%",
+                                backgroundColor: "currentColor",
+                              }}
+                            />
+                            {caseItem.status}
+                          </span>
+                        </div>
+                        <h3
+                          style={{
+                            fontSize: "var(--text-xl)",
+                            fontWeight: 600,
+                            letterSpacing: "-0.02em",
+                            marginBottom: "0.5rem",
+                            lineHeight: 1.3,
+                          }}
+                        >
+                          {caseItem.headline}
+                        </h3>
+                        <p
+                          style={{
+                            fontSize: "var(--text-sm)",
+                            color: "var(--text-secondary)",
+                            lineHeight: 1.7,
+                          }}
+                        >
+                          {caseItem.problem}
+                        </p>
+                      </div>
+
+                      {/* Resultado */}
+                      <div>
+                        <p
+                          className="label"
+                          style={{ marginBottom: "0.5rem" }}
+                        >
+                          Resultado
+                        </p>
+                        <p
+                          style={{
+                            fontSize: "var(--text-sm)",
+                            color: "var(--text-secondary)",
+                            lineHeight: 1.7,
+                          }}
+                        >
+                          {caseItem.result}
+                        </p>
+                      </div>
+
+                      {/* Arrow */}
+                      <span
+                        style={{
+                          color: "var(--text-tertiary)",
+                          fontSize: "var(--text-xl)",
+                          paddingTop: "0.25rem",
+                        }}
+                      >
+                        →
+                      </span>
+                    </article>
+                  </Link>
+                ))}
+              <div style={{ borderTop: "1px solid var(--border)" }} />
+            </div>
           </div>
         </section>
       </main>

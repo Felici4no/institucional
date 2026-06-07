@@ -22,13 +22,15 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+import { company } from "@/lib/company";
+
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000"
   ),
   title: {
-    default: "[NOME DA EMPRESA] — Software, Automação e IA para Empresas",
-    template: "%s | [NOME DA EMPRESA]",
+    default: `${company.name} — Software, Automação e IA para Empresas`,
+    template: `%s | ${company.name}`,
   },
   description:
     "Desenvolvemos aplicativos, sistemas e automações que organizam processos, reduzem trabalho manual e permitem que negócios cresçam com mais controle. Software sob medida para PMEs, prestadores de serviço e organizações.",
@@ -44,20 +46,20 @@ export const metadata: Metadata = {
     "criação de plataforma digital",
     "software para pequenas empresas",
   ],
-  authors: [{ name: "[NOME DA EMPRESA]" }],
-  creator: "[NOME DA EMPRESA]",
+  authors: [{ name: company.name }],
+  creator: company.name,
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://[DOMINIO-DA-EMPRESA].com.br",
-    siteName: "[NOME DA EMPRESA]",
-    title: "[NOME DA EMPRESA] — Software, Automação e IA para Empresas",
+    url: "https://lucasfeliciano.com.br",
+    siteName: company.name,
+    title: `${company.name} — Software, Automação e IA para Empresas`,
     description:
       "Sistemas para empresas que não podem continuar operando no improviso. Desenvolvemos aplicativos, plataformas e automações que organizam processos e permitem crescimento com controle.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "[NOME DA EMPRESA] — Software, Automação e IA para Empresas",
+    title: `${company.name} — Software, Automação e IA para Empresas`,
     description:
       "Sistemas para empresas que não podem continuar operando no improviso.",
   },

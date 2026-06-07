@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { events } from "@/lib/analytics";
 
+import { company } from "@/lib/company";
+
 const navLinks = [
   { label: "O que fazemos", href: "/#servicos" },
   { label: "Projetos", href: "/projetos" },
@@ -58,9 +60,9 @@ export default function Header() {
               textTransform: "uppercase",
               color: "var(--text-primary)",
             }}
-            aria-label="[NOME DA EMPRESA] — Página inicial"
+            aria-label={`${company.name} — Página inicial`}
           >
-            [EMPRESA]
+            {company.name}
           </Link>
 
           {/* Nav desktop */}

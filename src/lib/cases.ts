@@ -20,7 +20,7 @@ export type Case = {
 
 export const cases: Case[] = [
   {
-    slug: "dolarizando-se",
+    slug: "onboarding-remoto",
     number: "01",
     category: "Plataforma de Onboarding e Gestão",
     client: "Serviço Internacional",

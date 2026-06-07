@@ -14,8 +14,10 @@ import Content from "@/components/sections/Content";
 import FinalCTA from "@/components/sections/FinalCTA";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
+import { company } from "@/lib/company";
+
 export const metadata: Metadata = {
-  title: "[NOME DA EMPRESA] — Software, Automação e IA para Empresas",
+  title: `${company.name} — Software, Automação e IA para Empresas`,
   description:
     "Desenvolvemos aplicativos, sistemas e automações que organizam processos, reduzem trabalho manual e permitem que negócios cresçam com mais controle. Sediados em São Paulo.",
   alternates: {

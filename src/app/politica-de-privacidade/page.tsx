@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
+import { company } from "@/lib/company";
+
 export const metadata: Metadata = {
   title: "Política de Privacidade",
   description: "Como coletamos, usamos e protegemos seus dados.",
@@ -44,56 +46,63 @@ export default function PrivacyPage() {
                   lineHeight: 1.75,
                 }}
               >
-                <p
-                  style={{
-                    padding: "1rem",
-                    border: "1px solid var(--border)",
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "var(--text-xs)",
-                  }}
-                >
-                  [PLACEHOLDER: Este documento deve ser redigido com auxílio
-                  jurídico especializado, em conformidade com a LGPD (Lei
-                  13.709/2018). Substitua este bloco pelo texto definitivo antes
-                  de publicar o site.]
-                </p>
-
                 <p>
-                  A [NOME DA EMPRESA] está comprometida com a proteção da
+                  A iniciativa liderada por {company.name} está comprometida com a proteção da
                   privacidade de seus clientes, parceiros e visitantes do site.
-                  Esta política descreve como coletamos, usamos e protegemos
-                  seus dados pessoais, em conformidade com a Lei Geral de
+                  Esta política descreve como tratamos dados pessoais em conformidade com a Lei Geral de
                   Proteção de Dados (LGPD — Lei 13.709/2018).
                 </p>
 
-                {[
-                  {
-                    title: "1. Dados coletados",
-                    content:
-                      "[PLACEHOLDER: Liste os dados coletados via formulário, cookies, analytics, etc.]",
-                  },
-                  {
-                    title: "2. Finalidade do tratamento",
-                    content:
-                      "[PLACEHOLDER: Descreva para que os dados são utilizados.]",
-                  },
-                  {
-                    title: "3. Compartilhamento de dados",
-                    content:
-                      "[PLACEHOLDER: Informe com quem os dados podem ser compartilhados.]",
-                  },
-                  {
-                    title: "4. Seus direitos",
-                    content:
-                      "[PLACEHOLDER: Liste os direitos do titular dos dados conforme a LGPD.]",
-                  },
-                  {
-                    title: "5. Contato",
-                    content:
-                      "Para dúvidas sobre esta política, entre em contato: [EMAIL-COMERCIAL@EMPRESA.COM.BR]",
-                  },
-                ].map((section) => (
-                  <div key={section.title}>
+                <div>
+                  <h2
+                    style={{
+                      fontSize: "var(--text-lg)",
+                      fontWeight: 600,
+                      color: "var(--text-primary)",
+                      marginBottom: "0.75rem",
+                    }}
+                  >
+                    1. Coleta de dados
+                  </h2>
+                  <p>
+                    Coletamos dados voluntariamente fornecidos por você através do nosso formulário de contato (como nome, e-mail e informações sobre sua empresa) para fins de comunicação comercial e agendamento de reuniões.
+                  </p>
+                </div>
+
+                <div>
+                  <h2
+                    style={{
+                      fontSize: "var(--text-lg)",
+                      fontWeight: 600,
+                      color: "var(--text-primary)",
+                      marginBottom: "0.75rem",
+                    }}
+                  >
+                    2. Tratamento e uso
+                  </h2>
+                  <p>
+                    Os dados coletados são tratados única e exclusivamente para responder às solicitações de diagnóstico, reuniões e prestar as informações demandadas pelo próprio titular.
+                  </p>
+                </div>
+
+                <div>
+                  <h2
+                    style={{
+                      fontSize: "var(--text-lg)",
+                      fontWeight: 600,
+                      color: "var(--text-primary)",
+                      marginBottom: "0.75rem",
+                    }}
+                  >
+                    3. Direitos do titular
+                  </h2>
+                  <p>
+                    O usuário tem direito de solicitar o acesso, retificação ou exclusão de seus dados a qualquer momento, entrando em contato diretamente pelo nosso e-mail oficial.
+                  </p>
+                </div>
+
+                {company.email && (
+                  <div>
                     <h2
                       style={{
                         fontSize: "var(--text-lg)",
@@ -102,11 +111,13 @@ export default function PrivacyPage() {
                         marginBottom: "0.75rem",
                       }}
                     >
-                      {section.title}
+                      4. Contato
                     </h2>
-                    <p>{section.content}</p>
+                    <p>
+                      Para exercer seus direitos de privacidade ou esclarecer dúvidas, envie uma mensagem para: {company.email}
+                    </p>
                   </div>
-                ))}
+                )}
               </div>
             </div>
           </div>

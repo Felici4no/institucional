@@ -3,11 +3,13 @@ import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { team } from "@/lib/team";
+import { achievements } from "@/lib/achievements";
+import { company, isPlaceholder } from "@/lib/company";
 
 export const metadata: Metadata = {
   title: "Sobre",
   description:
-    "Uma empresa jovem de software, automação e IA. Formada por engenheiros com experiência prática em produtos digitais, sistemas e operações reais.",
+    "Experiência construída desenvolvendo produtos digitais, sistemas sob medida e automações reais lideradas por Lucas Feliciano.",
   alternates: { canonical: "/sobre" },
 };
 
@@ -31,6 +33,33 @@ const values = [
     label: "Continuidade",
     description:
       "Um produto entregue não é um produto abandonado. Nos importamos com o que acontece depois do lançamento.",
+  },
+];
+
+const credentialGroups = [
+  {
+    title: "Formação Principal",
+    desc: "Formação em Engenharia de Software pela FIAP (Janeiro de 2026).",
+  },
+  {
+    title: "Arquitetura de Sistemas",
+    desc: "Services Architecture / API / Mobile Architecture pela FIAP (Dezembro de 2025). Estudos focados em arquitetura de microsserviços, APIs, aplicações móveis e integração de sistemas.",
+  },
+  {
+    title: "Produto e Experiência",
+    desc: "Branding Analytics, Design Thinking e Roteiro para Multimídia (FIAP). Estudos de design centrado no usuário, branding estratégico e comunicação digital.",
+  },
+  {
+    title: "Blockchain e Descentralização",
+    desc: "Blockchain e Blockchain Advanced (FIAP), Solidity: Smart Contracts e Tokens (Alura). Estudos em redes descentralizadas, tokens e contratos inteligentes.",
+  },
+  {
+    title: "Infraestrutura em Nuvem",
+    desc: "Introdução à AWS: Computação em Nuvem (LinkedIn Learning). Estudos de suporte a infraestrutura em nuvem e serviços AWS.",
+  },
+  {
+    title: "Desenvolvimento e Fundamentos",
+    desc: "Linguagem C e Engenharia de Software (Alura), Curso de JavaScript (Curso em Vídeo), e Fundamentos para Desenvolvimento de Software (Microsoft & LinkedIn, Google Grasshopper).",
   },
 ];
 
@@ -72,7 +101,7 @@ export default function AboutPage() {
                     marginBottom: "2rem",
                   }}
                 >
-                  Jovens, mas não começamos ontem.
+                  Experiência construída em projetos reais.
                 </h1>
               </div>
               <div style={{ paddingTop: "0.5rem" }}>
@@ -84,9 +113,8 @@ export default function AboutPage() {
                     marginBottom: "1.5rem",
                   }}
                 >
-                  Somos uma empresa jovem, mas nossa experiência foi construída
-                  desenvolvendo produtos reais, participando de projetos
-                  complexos e resolvendo problemas sob restrições reais.
+                  Nossa operação é liderada por {company.name} e atua de forma focada no desenvolvimento 
+                  de soluções reais, participando de projetos de software complexos e entregando aplicações de alta performance.
                 </p>
                 <p
                   style={{
@@ -96,10 +124,8 @@ export default function AboutPage() {
                     marginBottom: "1.5rem",
                   }}
                 >
-                  Fundamos a empresa para transformar competência técnica em
-                  resultados comerciais concretos. Não para vender tecnologia
-                  pelo nome — mas para construir software que muda como uma
-                  operação funciona.
+                  Esta iniciativa foi estruturada para transformar competência técnica profunda em 
+                  resultados comerciais claros, focados em software sob medida que altera positivamente o ritmo de operações corporativas.
                 </p>
                 <p
                   style={{
@@ -109,8 +135,8 @@ export default function AboutPage() {
                     marginBottom: "1.5rem",
                   }}
                 >
-                  Nossa visão de longo prazo é construir uma empresa que seja
-                  reconhecida pelo que entregou — não pelo que prometeu.
+                  Seguimos a visão de construir uma operação reconhecida pela consistência técnica do que 
+                  implantou e colocou em produção — sem promessas abstratas ou números inventados.
                 </p>
                 <blockquote
                   style={{
@@ -123,8 +149,7 @@ export default function AboutPage() {
                     color: "var(--text-primary)",
                   }}
                 >
-                  Sabemos construir, sabemos por que estamos construindo e
-                  sabemos que o software precisa produzir resultado.
+                  Sabemos construir, compreendemos os objetivos de negócio por trás do código e nos importamos com a continuidade do software entregue.
                 </blockquote>
               </div>
             </div>
@@ -186,7 +211,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Equipe */}
+        {/* Liderança */}
         <section
           style={{
             padding: "5rem 0",
@@ -195,12 +220,13 @@ export default function AboutPage() {
         >
           <div className="container">
             <p className="label" style={{ marginBottom: "3rem" }}>
-              Fundadores
+              Liderança
             </p>
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(2, 1fr)",
+                gridTemplateColumns: "1fr",
+                maxWidth: "720px",
                 borderTop: "1px solid var(--border)",
                 borderLeft: "1px solid var(--border)",
               }}
@@ -214,36 +240,38 @@ export default function AboutPage() {
                     borderRight: "1px solid var(--border)",
                     borderBottom: "1px solid var(--border)",
                     display: "grid",
-                    gridTemplateColumns: "80px 1fr",
+                    gridTemplateColumns: member.photo ? "80px 1fr" : "1fr",
                     gap: "2rem",
                     alignItems: "start",
                   }}
                   className="team-member-card"
                 >
-                  {/* Foto */}
-                  <div
-                    style={{
-                      width: "80px",
-                      height: "80px",
-                      border: "1px solid var(--border)",
-                      backgroundColor: "var(--bg-secondary)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                    }}
-                    aria-label={`Foto de ${member.name}`}
-                  >
-                    <span
+                  {member.photo && (
+                    /* Foto */
+                    <div
                       style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "var(--text-xs)",
-                        color: "var(--text-tertiary)",
+                        width: "80px",
+                        height: "80px",
+                        border: "1px solid var(--border)",
+                        backgroundColor: "var(--bg-secondary)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexShrink: 0,
                       }}
+                      aria-label={`Foto de ${member.name}`}
                     >
-                      FOTO
-                    </span>
-                  </div>
+                      <span
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "var(--text-xs)",
+                          color: "var(--text-tertiary)",
+                        }}
+                      >
+                        FOTO
+                      </span>
+                    </div>
+                  )}
 
                   <div>
                     <h2
@@ -286,21 +314,183 @@ export default function AboutPage() {
                     >
                       {member.bio}
                     </p>
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn btn-ghost btn-arrow"
+                    {member.linkedin && !isPlaceholder(member.linkedin) && (
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-ghost btn-arrow"
+                        style={{
+                          padding: 0,
+                          fontSize: "var(--text-xs)",
+                          fontFamily: "var(--font-mono)",
+                          letterSpacing: "0.04em",
+                        }}
+                      >
+                        LinkedIn
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Formação e campos de estudo */}
+        <section
+          style={{
+            padding: "5rem 0",
+            borderBottom: "1px solid var(--border)",
+            backgroundColor: "var(--bg-secondary)",
+          }}
+        >
+          <div className="container">
+            <p className="label" style={{ marginBottom: "3rem" }}>
+              Formação e campos de estudo
+            </p>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                borderTop: "1px solid var(--border)",
+                borderLeft: "1px solid var(--border)",
+              }}
+              className="credentials-grid"
+            >
+              {credentialGroups.map((group) => (
+                <div
+                  key={group.title}
+                  style={{
+                    padding: "2.5rem",
+                    borderRight: "1px solid var(--border)",
+                    borderBottom: "1px solid var(--border)",
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontSize: "var(--text-base)",
+                      fontWeight: 600,
+                      marginBottom: "0.75rem",
+                    }}
+                  >
+                    {group.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: "var(--text-sm)",
+                      color: "var(--text-secondary)",
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    {group.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Reconhecimento */}
+        <section
+          style={{
+            padding: "5rem 0",
+            borderBottom: "1px solid var(--border)",
+          }}
+        >
+          <div className="container">
+            <p className="label" style={{ marginBottom: "2rem" }}>
+              Reconhecimento
+            </p>
+            <h2
+              style={{
+                fontSize: "var(--text-2xl)",
+                fontWeight: 600,
+                letterSpacing: "-0.02em",
+                lineHeight: 1.2,
+                marginBottom: "3rem",
+                maxWidth: "680px",
+              }}
+            >
+              Projetos reconhecidos em tecnologia, mobilidade e impacto.
+            </h2>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)",
+                borderTop: "1px solid var(--border)",
+                borderLeft: "1px solid var(--border)",
+              }}
+              className="about-achievements-grid"
+            >
+              {achievements.map((achievement, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    padding: "2.5rem",
+                    borderRight: "1px solid var(--border)",
+                    borderBottom: "1px solid var(--border)",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "baseline",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    <span
                       style={{
-                        padding: 0,
-                        fontSize: "var(--text-xs)",
                         fontFamily: "var(--font-mono)",
-                        letterSpacing: "0.04em",
+                        fontSize: "var(--text-xs)",
+                        color: "var(--text-secondary)",
+                        border: "1px solid var(--border)",
+                        padding: "0.2rem 0.5rem",
                       }}
                     >
-                      LinkedIn
-                    </a>
+                      {achievement.recognition}
+                    </span>
+                    {achievement.year && (
+                      <span
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "var(--text-xs)",
+                          color: "var(--text-tertiary)",
+                        }}
+                      >
+                        {achievement.year}
+                      </span>
+                    )}
                   </div>
+                  <h3
+                    style={{
+                      fontSize: "var(--text-base)",
+                      fontWeight: 600,
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    {achievement.project}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "var(--text-xs)",
+                      color: "var(--text-tertiary)",
+                      marginBottom: "0.75rem",
+                    }}
+                  >
+                    {achievement.area}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "var(--text-sm)",
+                      color: "var(--text-secondary)",
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {achievement.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -465,6 +655,8 @@ export default function AboutPage() {
           .values-grid { grid-template-columns: 1fr !important; }
           .team-page-grid { grid-template-columns: 1fr !important; }
           .team-member-card { grid-template-columns: 1fr !important; }
+          .about-achievements-grid { grid-template-columns: 1fr !important; }
+          .credentials-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </>
