@@ -10,24 +10,14 @@ export type TeamMember = {
 
 export const team: TeamMember[] = [
   {
-    slug: "fundador-01",
-    name: "[NOME DO FUNDADOR 1]",
-    role: "Sócio · Produto e Engenharia",
-    specialty:
-      "Desenvolvimento web, sistemas internos e arquitetura de produto",
-    bio: "[Texto profissional a ser fornecido pelo fundador. Deve cobrir formação, projetos relevantes e área de atuação principal.]",
-    linkedin: "https://linkedin.com/in/[PLACEHOLDER]",
+    slug: "lucas-feliciano",
+    name: "Lucas Feliciano",
+    role: "Sócio responsável por Produto e Engenharia",
+    specialty: "Desenvolvimento de software, arquitetura de sistemas e produto digital",
+    bio: "Lucas Feliciano atua em engenharia de software, arquitetura de sistemas e produto digital. Possui formação em Engenharia de Software pela FIAP e estudos complementares em arquitetura de serviços e APIs, aplicações mobile, branding, automação, blockchain e infraestrutura em nuvem. Desenvolveu plataformas comerciais, sistemas de dados e protótipos premiados, incluindo projetos reconhecidos pela ElevenLabs e Tech Mahindra e apresentados no Latam Mobility.",
+    linkedin: "", // Omitido por ser placeholder (será oculto na UI)
     photo: null,
-  },
-  {
-    slug: "fundador-02",
-    name: "[NOME DO FUNDADOR 2]",
-    role: "Sócio · Engenharia e Automação",
-    specialty: "Automação, integrações, aplicativos mobile e IA aplicada",
-    bio: "[Texto profissional a ser fornecido pelo fundador. Deve cobrir formação, projetos relevantes e área de atuação principal.]",
-    linkedin: "https://linkedin.com/in/[PLACEHOLDER]",
-    photo: null,
-  },
+  }
 ];
 
 export type ContentPost = {
@@ -64,11 +54,3 @@ export const posts: ContentPost[] = [
     date: "2024-03",
   },
 ];
-
-export const contact = {
-  email: "[EMAIL-COMERCIAL@EMPRESA.COM.BR]",
-  whatsapp: "[NÚMERO COM DDD]",
-  whatsappLink: "https://wa.me/[NÚMERO]",
-  location: "São Paulo, SP",
-  responseTime: "Respondemos em até 1 dia útil",
-};

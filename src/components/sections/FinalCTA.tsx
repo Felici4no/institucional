@@ -1,9 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { contact } from "@/lib/team";
+import { company, isPlaceholder } from "@/lib/company";
 
 export default function FinalCTA() {
+  const showEmail = company.email && !isPlaceholder(company.email);
+  const showWhatsapp = company.whatsapp && !isPlaceholder(company.whatsapp);
+  const showLocation = company.location && !isPlaceholder(company.location);
+
   return (
     <section
       id="contato-rapido"
@@ -53,83 +57,91 @@ export default function FinalCTA() {
             </p>
 
             {/* Canais diretos */}
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-              }}
-            >
-              <a
-                href={`mailto:${contact.email}`}
+            {(showEmail || showWhatsapp) && (
+              <div
                 style={{
                   display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                  padding: "1rem",
-                  border: "1px solid var(--border)",
-                  transition: "border-color var(--transition-fast)",
-                  textDecoration: "none",
+                  flexDirection: "column",
+                  gap: "1rem",
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.borderColor = "var(--text-primary)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.borderColor = "var(--border)")
-                }
               >
-                <span className="label">E-mail</span>
-                <span
-                  style={{
-                    fontSize: "var(--text-sm)",
-                    color: "var(--text-secondary)",
-                  }}
-                >
-                  {contact.email}
-                </span>
-              </a>
-              <a
-                href={contact.whatsappLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                  padding: "1rem",
-                  border: "1px solid var(--border)",
-                  transition: "border-color var(--transition-fast)",
-                  textDecoration: "none",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.borderColor = "var(--text-primary)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.borderColor = "var(--border)")
-                }
-              >
-                <span className="label">WhatsApp</span>
-                <span
-                  style={{
-                    fontSize: "var(--text-sm)",
-                    color: "var(--text-secondary)",
-                  }}
-                >
-                  {contact.whatsapp}
-                </span>
-              </a>
-            </div>
+                {showEmail && (
+                  <a
+                    href={`mailto:${company.email}`}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.75rem",
+                      padding: "1rem",
+                      border: "1px solid var(--border)",
+                      transition: "border-color var(--transition-fast)",
+                      textDecoration: "none",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.borderColor = "var(--text-primary)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.borderColor = "var(--border)")
+                    }
+                  >
+                    <span className="label">E-mail</span>
+                    <span
+                      style={{
+                        fontSize: "var(--text-sm)",
+                        color: "var(--text-secondary)",
+                      }}
+                    >
+                      {company.email}
+                    </span>
+                  </a>
+                )}
+                {showWhatsapp && (
+                  <a
+                    href={company.whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.75rem",
+                      padding: "1rem",
+                      border: "1px solid var(--border)",
+                      transition: "border-color var(--transition-fast)",
+                      textDecoration: "none",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.borderColor = "var(--text-primary)")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.borderColor = "var(--border)")
+                    }
+                  >
+                    <span className="label">WhatsApp</span>
+                    <span
+                      style={{
+                        fontSize: "var(--text-sm)",
+                        color: "var(--text-secondary)",
+                      }}
+                    >
+                      {company.whatsapp}
+                    </span>
+                  </a>
+                )}
+              </div>
+            )}
 
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "var(--text-xs)",
-                color: "var(--text-tertiary)",
-                marginTop: "1.25rem",
-              }}
-            >
-              {contact.location} · {contact.responseTime}
-            </p>
+            {showLocation && (
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "var(--text-xs)",
+                  color: "var(--text-tertiary)",
+                  marginTop: "1.25rem",
+                }}
+              >
+                {company.location} · {company.responseTime}
+              </p>
+            )}
           </div>
 
           {/* Direita — CTA direto para formulário */}

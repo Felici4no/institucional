@@ -5,15 +5,15 @@ import { useEffect, useRef } from "react";
 import { events } from "@/lib/analytics";
 
 const capabilities = [
+  "Desenvolvimento Web",
   "Aplicativos Mobile",
-  "Sistemas Web",
-  "Plataformas Internas",
-  "Automações",
-  "Inteligência Artificial",
+  "Sistemas Internos",
+  "Arquitetura de Software",
+  "Automação",
   "Integrações",
-  "MVPs",
-  "Painéis Administrativos",
-  "Agentes de IA",
+  "Inteligência Artificial",
+  "Produto Digital",
+  "Visualização de Dados",
 ];
 
 export default function Hero() {

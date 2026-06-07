@@ -1,25 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { contact } from "@/lib/team";
-
-const footerNav = {
-  Serviços: [
-    { label: "MVP e Produto Digital", href: "/servicos#mvp-produto-digital" },
-    { label: "Sistemas Internos", href: "/servicos#sistemas-internos" },
-    { label: "Automação e IA", href: "/servicos#automacao-ia" },
-  ],
-  Empresa: [
-    { label: "Projetos", href: "/projetos" },
-    { label: "Sobre", href: "/sobre" },
-    { label: "Blog", href: "/blog" },
-  ],
-  Contato: [
-    { label: "Solicitar diagnóstico", href: "/contato" },
-    { label: "WhatsApp", href: contact.whatsappLink },
-    { label: contact.email, href: `mailto:${contact.email}` },
-  ],
-};
+import { company, isPlaceholder } from "@/lib/company";
 
 const legal = [
   { label: "Política de privacidade", href: "/politica-de-privacidade" },
@@ -28,6 +10,34 @@ const legal = [
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+
+  const showEmail = company.email && !isPlaceholder(company.email);
+  const showWhatsapp = company.whatsapp && !isPlaceholder(company.whatsapp);
+  const showLocation = company.location && !isPlaceholder(company.location);
+
+  // Dynamic contact links in footer
+  const contactLinks = [
+    { label: "Solicitar diagnóstico", href: "/contato" }
+  ];
+  if (showWhatsapp) {
+    contactLinks.push({ label: "WhatsApp", href: company.whatsappLink });
+  }
+  if (showEmail) {
+    contactLinks.push({ label: company.email, href: `mailto:${company.email}` });
+  }
+
+  const footerNav = {
+    Serviços: [
+      { label: "MVP e Produto Digital", href: "/servicos#mvp-produto-digital" },
+      { label: "Sistemas Internos", href: "/servicos#sistemas-internos" },
+      { label: "Automação e IA", href: "/servicos#automacao-ia" },
+    ],
+    Empresa: [
+      { label: "Projetos", href: "/projetos" },
+      { label: "Sobre", href: "/sobre" },
+    ],
+    Contato: contactLinks,
+  };
 
   return (
     <footer
@@ -94,15 +104,17 @@ export default function Footer() {
               >
                 Descrever meu projeto
               </Link>
-              <a
-                href={contact.whatsappLink}
-                className="btn btn-ghost"
-                style={{ color: "var(--text-on-dark-secondary)" }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                WhatsApp →
-              </a>
+              {showWhatsapp && (
+                <a
+                  href={company.whatsappLink}
+                  className="btn btn-ghost"
+                  style={{ color: "var(--text-on-dark-secondary)" }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  WhatsApp →
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -137,7 +149,7 @@ export default function Footer() {
                   marginBottom: "1rem",
                 }}
               >
-                [EMPRESA]
+                {company.name}
               </p>
               <p
                 style={{
@@ -147,19 +159,21 @@ export default function Footer() {
                   maxWidth: "280px",
                 }}
               >
-                Software, automação e inteligência artificial para empresas que
+                Software, automação e inteligência artificial aplicados para empresas que
                 precisam operar melhor.
               </p>
-              <p
-                style={{
-                  color: "var(--text-on-dark-secondary)",
-                  fontSize: "var(--text-xs)",
-                  fontFamily: "var(--font-mono)",
-                  marginTop: "1rem",
-                }}
-              >
-                {contact.location}
-              </p>
+              {showLocation && (
+                <p
+                  style={{
+                    color: "var(--text-on-dark-secondary)",
+                    fontSize: "var(--text-xs)",
+                    fontFamily: "var(--font-mono)",
+                    marginTop: "1rem",
+                  }}
+                >
+                  {company.location}
+                </p>
+              )}
             </div>
 
             {/* Nav sections */}
@@ -229,8 +243,7 @@ export default function Footer() {
                 color: "var(--text-on-dark-secondary)",
               }}
             >
-              © {currentYear} [NOME DA EMPRESA]. CNPJ [PLACEHOLDER]. Todos os
-              direitos reservados.
+              © {currentYear} {company.name}. {company.cnpj && !isPlaceholder(company.cnpj) ? `CNPJ ${company.cnpj}. ` : ""}Todos os direitos reservados.
             </p>
             <div style={{ display: "flex", gap: "1.5rem" }}>
               {legal.map((item) => (
